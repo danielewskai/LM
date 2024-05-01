@@ -27,6 +27,7 @@ while(T)
 
 pr.w(M)
 
+st.m<-M
 
 X <- st.m.gen(1000, 3)
 pr.w(X)
