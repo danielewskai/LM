@@ -12,31 +12,31 @@
 # my potrzebujemy grafowych krat a nie dla isinga bezpośrednio
 
 lattice.gen <- function(n_row = 3, n_col = 3) {
-  n <- n_row*n_col
+  n <- n_row * n_col
   nr_ver <- 1:n
   edges <- list()
-  for (j in 1:n_col){
-    for (i in 1:(n_row-1)){
-      edges[[length(edges) + 1]] <- c(j+(i-1)*n_col, j+i*n_col)
+  for (j in 1:n_col) {
+    for (i in 1:(n_row - 1)) {
+      edges[[length(edges) + 1]] <- c(j + (i - 1) * n_col, j + i * n_col)
     }
   }
 
-  for (i in 1:n_row){
-    for (j in 1:(n_col-1)){
-      edges[[length(edges) + 1]] <- c(j+(i-1)*n_col, j+(i-1)*n_col+1)
+  for (i in 1:n_row) {
+    for (j in 1:(n_col - 1)) {
+      edges[[length(edges) + 1]] <- c(j + (i - 1) * n_col, j + (i - 1) * n_col + 1)
     }
   }
   nei_matrix <- matrix(0, nrow = n, ncol = n)
-  for (i in 1:length(edges)){
+  for (i in 1:length(edges)) {
     x <- edges[[i]][1]
     y <- edges[[i]][2]
-    nei_matrix[x,y] <- 1
-    nei_matrix[y,x] <- 1
+    nei_matrix[x, y] <- 1
+    nei_matrix[y, x] <- 1
   }
-  return(list(edges = edges,nei_matrix = nei_matrix))
+  return(list(edges = edges, nei_matrix = nei_matrix))
 }
 
-#krata <- lattice.gen(7, 10, 32)
+# krata <- lattice.gen(7, 10, 32)
 krata <- lattice.gen(7, 10)
 krata$edges
 krata$nei_matrix

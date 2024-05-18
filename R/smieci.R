@@ -23,6 +23,3 @@ propp.wilson <- function(st.m, N = 5) {
 
 M <- st.m.gen(15, 4)
 propp.wilson(M)
-
-
-
