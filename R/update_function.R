@@ -13,15 +13,14 @@
 # return(ans)
 # }
 
-update.fun <- function(st.m, state, u)
-{
-  v <- st.m[state,]
-  s <- c(0,cumsum(v))
-  return(which(diff(s<=u)<0))
+update.fun <- function(st.m, state, u) {
+  v <- st.m[state, ]
+  s <- c(0, cumsum(v))
+  return(which(diff(s <= u) < 0))
 }
 
 
 
 MT <- st.m.gen(12, 3)
 s <- update.fun(MT, 3, 0.5)
-c(0, cumsum(MT[3,]))
+c(0, cumsum(MT[3, ]))
