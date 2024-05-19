@@ -1,8 +1,8 @@
 complete.graph.gen <- function(n = 5) {
   edges <- list()
-  for (i in 1:(n-1)) {
-    for (j in (i+1):n) {
-        edges[[length(edges) + 1]] <- c(i, j)
+  for (i in 1:(n - 1)) {
+    for (j in (i + 1):n) {
+      edges[[length(edges) + 1]] <- c(i, j)
     }
   }
   nei_matrix <- matrix(0, nrow = n, ncol = n)
