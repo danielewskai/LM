@@ -1,8 +1,8 @@
-ising <- function(temp = 0.01, graph = lattice.gen(5,5)) {
+ising <- function(temp = 0.01, graph = lattice.gen(3,3)) {
   new_state <- function(state,  U_vec_step){
     n <- ncol(graph$nei_matrix)
     stan <- state
-    for (v in 1:n){
+    v <- sample(1:n, 1)
       nei_plus <- neighbours(graph$nei_matrix[v,], stan)$nb_plus
       nei_minus <- neighbours(graph$nei_matrix[v,], stan)$nb_minus
       prog <- exp(2*temp*(nei_plus-nei_minus))/(exp(2*temp*(nei_plus-nei_minus))+1)
@@ -11,7 +11,6 @@ ising <- function(temp = 0.01, graph = lattice.gen(5,5)) {
       } else{
         stan[v] <- -1
       }
-    }
     return(stan)
 
   }
@@ -23,7 +22,7 @@ ising <- function(temp = 0.01, graph = lattice.gen(5,5)) {
   U_vec <- c(runif(1))
   k <- 0
   memory <- list()
-  while(k < 10) {
+  while(T) {
     U_vec <- append(U_vec, runif(2^(k-1))) # poprawić
     for (i in (2^k):1){
       #print(i)
@@ -43,8 +42,12 @@ ising <- function(temp = 0.01, graph = lattice.gen(5,5)) {
       stans <- stans_new
     }
     k <- k+1
+    if(all(stans[[1]]==stans[[2]])){
+      return(stans[[1]])
+    }
     #memory[[paste(as.character(-1),paste(as.character(s_up), collapse = ','), collapse = ";")]]
   }
 }
 
 ncol(complete.graph.gen(5)$nei_matrix)
+ising(temp = 0.4)

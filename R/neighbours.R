@@ -1,5 +1,5 @@
 neighbours <- function(nei, state) {
-    ct <- table(state[nei])
+    ct <- table(state[as.logical(nei)])
     if (is.na(ct['-1'])){
       ct['-1'] <- 0
     }
