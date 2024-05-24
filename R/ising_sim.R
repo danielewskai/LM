@@ -49,4 +49,18 @@ ising <- function(temp = 0.01, graph = lattice.gen(3, 3)) {
 }
 
 ncol(complete.graph.gen(5)$nei_matrix)
-ising(temp = 1)
+res <- ising(temp = 0.01, graph = lattice.gen(3,3))
+data <- matrix(res, ncol = 3)
+library(ggplot2)
+x <- 1:3
+y <- 1:3
+data <- expand.grid(X=x, Y=y)
+res <- list()
+for (i in 1:10){
+  res[[length(res)+1]] <- ising(temp = 0.01, graph = lattice.gen(3,3))
+
+}
+data$Z <- res[[7]]
+data <- data.frame(data)
+ggplot(data, aes(X, Y, fill= Z)) +
+  geom_tile()
