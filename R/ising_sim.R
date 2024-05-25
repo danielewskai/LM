@@ -1,4 +1,4 @@
-ising <- function(temp = 0.01, graph = lattice.gen(3, 3)) {
+ising <- function(temp = 0.01, graph = lattice.gen(4, 4), step = 10000) {
   new_state <- function(state, U_vec_step) {
     n <- ncol(graph$nei_matrix)
     stan <- state
@@ -21,10 +21,10 @@ ising <- function(temp = 0.01, graph = lattice.gen(3, 3)) {
   U_vec <- c(runif(1))
   k <- 0
   memory <- list()
-  while (T) {
+  while (k < step) {
     U_vec <- append(U_vec, runif(2^(k - 1))) # poprawić
     for (i in (2^k):1) {
-      # print(i)
+       print(i)
       stans_new <- list()
       for (s in stans) {
         # print(s)

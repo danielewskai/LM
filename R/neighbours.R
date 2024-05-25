@@ -1,10 +1,12 @@
 neighbours <- function(nei, state) {
-  ct <- table(state[as.logical(nei)])
-  if (is.na(ct["-1"])) {
-    ct["-1"] <- 0
+  nb_minus <- 0
+  nb_plus <- 0
+  for (i in state[as.logical(nei)]){
+    if (i==1){
+      nb_plus <- nb_plus + 1
+    } else{
+      nb_minus <- nb_minus + 1
+    }
   }
-  if (is.na(ct["1"])) {
-    ct["1"] <- 0
-  }
-  list(nb_minus = ct["-1"], nb_plus = ct["1"])
+  list(nb_minus = nb_minus, nb_plus = nb_plus)
 }
