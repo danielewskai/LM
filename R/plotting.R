@@ -17,6 +17,9 @@ M <- M.lattice.gen(10,10,60)
 
 X <- matrix(M<0, nrow = 10)
 
+plot(X)
+
+
 plot(X, col = c("green", "violet"), axis.col = NULL, axis.row = NULL, key = NULL,
      border = NA, xlab = NA, ylab = NA, main = NA)
 
