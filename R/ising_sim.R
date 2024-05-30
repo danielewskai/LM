@@ -50,7 +50,7 @@ ising <- function(temp = 0.01, graph = lattice.gen(3, 3), step = 50, s_up = rep(
 }
 
 ncol(complete.graph.gen(5)$nei_matrix)
-res <- ising(temp = 0.01, graph = lattice.gen(3,3),s_up = c(1, -1,  1, -1, -1, -1,  1, -1, -1))
+res <- ising(temp = 0.01, graph = lattice.gen(3,3))
 data <- matrix(res, ncol = 3)
 library(ggplot2)
 x <- 1:3
