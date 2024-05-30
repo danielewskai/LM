@@ -12,5 +12,5 @@ st.m.gen <- function(dim = 5, r = 3) {
   return(t(matrix(v, dim, dim)))
 }
 
-M <- st.m.gen(10, 1)
-cumsum(M[2, ])
+# M <- st.m.gen(10, 1)
+# cumsum(M[2, ])

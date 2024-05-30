@@ -37,6 +37,6 @@ lattice.gen <- function(n_row = 3, n_col = 3) {
 }
 
 # krata <- lattice.gen(7, 10, 32)
-krata <- lattice.gen(2, 3)
-krata$edges
-krata$nei_matrix
+# krata <- lattice.gen(2, 3)
+# krata$edges
+# krata$nei_matrix

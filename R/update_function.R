@@ -20,7 +20,7 @@ update.fun <- function(st.m, state, u) {
 }
 
 
-
-MT <- st.m.gen(12, 3)
-s <- update.fun(MT, 3, 0.5)
-c(0, cumsum(MT[3, ]))
+#
+# MT <- st.m.gen(12, 3)
+# s <- update.fun(MT, 3, 0.5)
+# c(0, cumsum(MT[3, ]))
