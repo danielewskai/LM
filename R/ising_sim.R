@@ -1,4 +1,4 @@
-ising <- function(temp = 0.01, graph = lattice.gen(3, 3), step = 50, s_up = rep(1, n)) {
+ising <- function(temp = 0.01, graph = lattice.gen(3, 3), step = 50) {
   new_state <- function(state, U_vec_step) {
     n <- ncol(graph$nei_matrix)
     stan <- state
@@ -19,6 +19,7 @@ ising <- function(temp = 0.01, graph = lattice.gen(3, 3), step = 50, s_up = rep(
 
   n <- ncol(graph$nei_matrix)
   s_down <- rep(-1, n)
+  s_up = rep(1, n)
   stans <- list(s_up, s_down)
   U_vec <- c(runif(1))
   k <- 0
