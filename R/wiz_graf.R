@@ -111,7 +111,7 @@
 # frames <- paste0("~/GitHub/LM/R/Wygenerowane obrazki/Gif/obrazek", 1:length(path), ".png")
 # m <- image_read(frames)
 # m <- image_animate(m, fps = 50)
-# image_write(m, "~/GitHub/LM/R/Wygenerowane obrazki/Gif/movie.gif")
+# image_write(m, "~/GitHub/LM/R/Wygenerowane obrazki/Gif/movie3.gif")
 #
 #
 # # Generowanie gif-a dla temp = 0
