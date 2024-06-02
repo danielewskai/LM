@@ -97,20 +97,20 @@ for (i in length(history):1){
   code <- state_hash(next_s)
 }
 
-install.packages("plot.matrix")
+
 library(plot.matrix)
 
 for (i in 1:length(path)) {
   file <- paste0("~/GitHub/LM/R/Wygenerowane obrazki/Gif/obrazek", i, ".png")
   png(file, width = 800, height = 600)
-  plot(matrix(path[[i]]<0, ncol = 4), main = NA,axis.col = NULL, axis.row = NULL, key = NULL,
+  plot(matrix(path[[i]]<0, ncol = 4),col = c("darkslateblue", "mediumorchid"), main = NA,axis.col = NULL, axis.row = NULL, key = NULL,
        border = NA, xlab = NA, ylab = NA)
   dev.off()
 }
 
-install.package("magick")
+
 library(magick)
-frames <- paste0("folder/", 1:100, ".jpg")
+frames <- paste0("~/GitHub/LM/R/Wygenerowane obrazki/Gif/obrazek", 1:100, ".png")
 m <- image_read(frames)
-m <- image_animate(m)
-image_write(m, "movie.gif")
+m <- image_animate(m, fps = 20)
+image_write(m, "~/GitHub/LM/R/Wygenerowane obrazki/Gif/movie.gif")
