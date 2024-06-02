@@ -1,4 +1,26 @@
+# Funkcja do symulacji modelu Isinga z wykorzystaniem sandwichingu oraz algorytmu Propp'a-Wilsona
+# Przyjmuje cztery argumenty: temp - wartość temperatury z modelu Isinga,
+# graph - graf, na którym wykonywana ma być symulacja, step - wykładnik w liczbie
+# iteracji w algorytmie Propp'a-Wilsona, mem_ret - wartość logiczna określająca czy
+# symulacja ma zwracać trajektorie powstałe w trakcie symulacji.
 ising <- function(temp = 0.01, graph = lattice.gen(3, 3), step = 50, mem_ret = FALSE) {
+
+  if (!is.numeric(temp) || temp < 0) {
+    stop("Argument 'temp' musi być liczbą nieujemną")
+  }
+
+  if (!is.list(graph)) {
+    stop("Argument 'graph' musi być listą")
+  }
+
+  if (!is.numeric(step) || step <= 0) {
+    stop("Argument 'step' musi być liczbą całowitą dodatnią")
+  }
+
+  if (!is.logical(mem_ret)) {
+    stop("Argument 'mem_ret' musi mieć wartość logiczną")
+  }
+
   new_state <- function(state, U_vec_step) {
     n <- ncol(graph$nei_matrix)
     stan <- state
@@ -54,20 +76,3 @@ ising <- function(temp = 0.01, graph = lattice.gen(3, 3), step = 50, mem_ret = F
     }
   }
 }
-
-# ncol(complete.graph.gen(5)$nei_matrix)
-# res <- ising(temp = 0.01, graph = lattice.gen(3,3))
-# data <- matrix(res, ncol = 3)
-# library(ggplot2)
-# x <- 1:3
-# y <- 1:3
-# data <- expand.grid(X=x, Y=y)
-# res <- list()
-# for (i in 1:10){
-#   res[[length(res)+1]] <- ising(temp = 0, graph = lattice.gen(3,3))
-#
-# }
-# data$Z <- res[[5]]
-# data <- data.frame(data)
-# ggplot(data, aes(X, Y, fill= Z)) +
-#   geom_tile()

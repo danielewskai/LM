@@ -1,17 +1,17 @@
-# lattice.gen <- function(n_row = 5, n_col = 5, down_spins = 0) {
-#   d <- n_col * n_row
-#   if (down_spins > d) # idk czy dopisywac jakies warunki typu 'argumenty musza byc naturalne' czy cos
-#     {
-#       stop("number of down-spins must be smaller than product of dimensions")
-#     }
-#   v <- rep(1, d)
-#   d_cords <- sample(1:d, down_spins, replace = FALSE)
-#   v[d_cords] <- -1
-#   return(matrix(v, n_row, n_col))
-# }
-# my potrzebujemy grafowych krat a nie dla isinga bezpośrednio
-
+# Funkcja służy do generowania krat
+# Przyjmuje dwa argumenty: n_row - liczba rzędów wierzchołków oraz n_col - liczba
+# wierzchołków w każdym rzędzie
+# Zwraca listę zawieracjącą listę par wierzchołków (czyli krawędzie) oraz macierz sąsiedztwa
 lattice.gen <- function(n_row = 3, n_col = 3) {
+
+  if (!is.numeric(n_row) || n_row <= 0) {
+    stop("Argument 'n_row' musi być liczbą całkowitą dodatnią")
+  }
+
+  if (!is.numeric(n_col) || n_col <= 0) {
+    stop("Argument 'n_col' musi być liczbą całkowitą dodatnią")
+  }
+
   n <- n_row * n_col
   nr_ver <- 1:n
   edges <- list()
@@ -35,8 +35,3 @@ lattice.gen <- function(n_row = 3, n_col = 3) {
   }
   return(list(edges = edges, nei_matrix = nei_matrix))
 }
-
-# krata <- lattice.gen(7, 10, 32)
-# krata <- lattice.gen(2, 3)
-# krata$edges
-# krata$nei_matrix

@@ -1,4 +1,12 @@
+# Funkcja służy do generowania grafów pełnych
+# Przyjmuje argument n oznaczający liczbę wierzchołków w grafie
+# Zwraca listę zawieracjącą listę par wierzchołków (czyli krawędzie) oraz macierz sąsiedztwa
 complete.graph.gen <- function(n = 5) {
+
+  if (!is.numeric(n) || n <= 0) {
+    stop("Argument 'n' musi być liczbą całkowitą dodatnią")
+  }
+
   edges <- list()
   for (i in 1:(n - 1)) {
     for (j in (i + 1):n) {
@@ -14,7 +22,3 @@ complete.graph.gen <- function(n = 5) {
   }
   return(list(edges = edges, nei_matrix = nei_matrix))
 }
-
-# graf <- complete.graph.gen(5)
-# graf$edges
-# graf$nei_matrix
