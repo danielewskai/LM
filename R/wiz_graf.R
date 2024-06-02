@@ -85,6 +85,8 @@ save(result_complete_temp, file = "~/GitHub/LM/R/Wyniki czasowe/complete_graph_t
 save(result_tree_temp, file = "~/GitHub/LM/R/Wyniki czasowe/tree_graph_temp.RData")
 save(result_lattice_temp, file = "~/GitHub/LM/R/Wyniki czasowe/lattice_graph_temp.RData")
 
+
+# Generowanie gif-a temp = 0.3
 isi <- ising(temp = 0.3, lattice.gen(4,4), mem_ret = TRUE)
 isi$result
 history <- isi$history
@@ -110,7 +112,40 @@ for (i in 1:length(path)) {
 
 
 library(magick)
-frames <- paste0("~/GitHub/LM/R/Wygenerowane obrazki/Gif/obrazek", 1:100, ".png")
+frames <- paste0("~/GitHub/LM/R/Wygenerowane obrazki/Gif/obrazek", 1:length(path), ".png")
 m <- image_read(frames)
-m <- image_animate(m, fps = 20)
+m <- image_animate(m, fps = 50)
 image_write(m, "~/GitHub/LM/R/Wygenerowane obrazki/Gif/movie.gif")
+
+
+# Generowanie gif-a dla temp = 0
+isi <- ising(temp = 0, lattice.gen(4,4), mem_ret = TRUE)
+isi$result
+history <- isi$history
+code <- state_hash(rep(1,16))
+path <- list()
+path[[length(path)+1]] <- rep(1,16)
+for (i in length(history):1){
+  next_s <- history[[i]][as.character(code)][[1]]
+  path[[length(path)+1]] <- next_s
+  code <- state_hash(next_s)
+}
+
+
+library(plot.matrix)
+
+for (i in 1:length(path)) {
+  file <- paste0("~/GitHub/LM/R/Wygenerowane obrazki/Gif/obrazek0", i, ".png")
+  png(file, width = 800, height = 600)
+  plot(matrix(path[[i]]<0, ncol = 4),col = c("darkslateblue", "mediumorchid"), main = NA,axis.col = NULL, axis.row = NULL, key = NULL,
+       border = NA, xlab = NA, ylab = NA)
+  dev.off()
+}
+
+
+library(magick)
+# ograniczam liczbę obrazków do gif-a ze względu na małą możliwość obliczeniową :(
+frames <- paste0("~/GitHub/LM/R/Wygenerowane obrazki/Gif/obrazek0", 1:513, ".png")
+m <- image_read(frames)
+m <- image_animate(m, fps = 50)
+image_write(m, "~/GitHub/LM/R/Wygenerowane obrazki/Gif/movie0.gif")
