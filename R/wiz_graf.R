@@ -48,13 +48,13 @@
 # }
 #
 # result_tree <- list()
-# for (n in 2:20) {
+# for (n in 3:20) {
 #   result_tree[[length(result_tree)+1]] <- microbenchmark(ising(0.4, tree.gen(n)), times = 10, unit = "s")
 # }
 #
 # result_lattice <- list()
 # for (i in 2:5) {
-#   for (j in 2:5){
+#   for (j in i:5){
 #     result_lattice[[length(result_lattice)+1]] <- microbenchmark(ising(0.4, lattice.gen(i, j)), times = 10, unit = "s")
 #   }
 # }
