@@ -18,6 +18,6 @@ propp.wilson_a <- function(st.m, N = 5) {
   return(v)
 }
 
-M <- st.m.gen(20, 3)
-
-V <- propp.wilson(M, 3)
+# M <- st.m.gen(20, 3)
+#
+# V <- propp.wilson(M, 3)

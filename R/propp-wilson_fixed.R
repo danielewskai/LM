@@ -23,25 +23,25 @@ pr.w <- function(st.m) # ten najlepszy
   }
 }
 
-pr.w(M)
-
-st.m <- M
-
-X <- st.m.gen(1000, 3)
-pr.w(X)
-propp.wilson(X)
-m1 <- st.m.gen(10)
-m2 <- st.m.gen(10)
-matrix(c(m1, m2), 10)
-
-start.time <- Sys.time()
-pr.w(X)
-end.time <- Sys.time()
-time.taken <- end.time - start.time
-time.taken
-
-start.time <- Sys.time()
-propp.wilson(X)
-end.time <- Sys.time()
-time.taken <- end.time - start.time
-time.taken
+# pr.w(M)
+#
+# st.m <- M
+#
+# X <- st.m.gen(1000, 3)
+# pr.w(X)
+# propp.wilson(X)
+# m1 <- st.m.gen(10)
+# m2 <- st.m.gen(10)
+# matrix(c(m1, m2), 10)
+#
+# start.time <- Sys.time()
+# pr.w(X)
+# end.time <- Sys.time()
+# time.taken <- end.time - start.time
+# time.taken
+#
+# start.time <- Sys.time()
+# propp.wilson(X)
+# end.time <- Sys.time()
+# time.taken <- end.time - start.time
+# time.taken

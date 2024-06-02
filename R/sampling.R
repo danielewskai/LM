@@ -8,7 +8,7 @@ mc.sample <- function(st.m, starting.state, sample.size = 10) {
   return(v)
 }
 
-b <- mc.sample(MT, 1, 100)
-
-
-seq(pr.w(Ma), lenght.out = 10)
+# b <- mc.sample(MT, 1, 100)
+#
+#
+# seq(pr.w(Ma), lenght.out = 10)

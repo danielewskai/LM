@@ -15,6 +15,6 @@ complete.graph.gen <- function(n = 5) {
   return(list(edges = edges, nei_matrix = nei_matrix))
 }
 
-graf <- complete.graph.gen(5)
-graf$edges
-graf$nei_matrix
+# graf <- complete.graph.gen(5)
+# graf$edges
+# graf$nei_matrix
