@@ -85,3 +85,32 @@ save(result_complete_temp, file = "~/GitHub/LM/R/Wyniki czasowe/complete_graph_t
 save(result_tree_temp, file = "~/GitHub/LM/R/Wyniki czasowe/tree_graph_temp.RData")
 save(result_lattice_temp, file = "~/GitHub/LM/R/Wyniki czasowe/lattice_graph_temp.RData")
 
+isi <- ising(temp = 0.3, lattice.gen(4,4), mem_ret = TRUE)
+isi$result
+history <- isi$history
+code <- state_hash(rep(1,16))
+path <- list()
+path[[length(path)+1]] <- rep(1,16)
+for (i in length(history):1){
+  next_s <- history[[i]][as.character(code)][[1]]
+  path[[length(path)+1]] <- next_s
+  code <- state_hash(next_s)
+}
+
+install.packages("plot.matrix")
+library(plot.matrix)
+
+for (i in 1:length(path)) {
+  file <- paste0("~/GitHub/LM/R/Wygenerowane obrazki/Gif/obrazek", i, ".png")
+  png(file, width = 800, height = 600)
+  plot(matrix(path[[i]]<0, ncol = 4), main = NA,axis.col = NULL, axis.row = NULL, key = NULL,
+       border = NA, xlab = NA, ylab = NA)
+  dev.off()
+}
+
+install.package("magick")
+library(magick)
+frames <- paste0("folder/", 1:100, ".jpg")
+m <- image_read(frames)
+m <- image_animate(m)
+image_write(m, "movie.gif")

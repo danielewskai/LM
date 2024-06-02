@@ -1,4 +1,4 @@
-ising <- function(temp = 0.01, graph = lattice.gen(3, 3), step = 50) {
+ising <- function(temp = 0.01, graph = lattice.gen(3, 3), step = 50, mem_ret = FALSE) {
   new_state <- function(state, U_vec_step) {
     n <- ncol(graph$nei_matrix)
     stan <- state
@@ -13,18 +13,16 @@ ising <- function(temp = 0.01, graph = lattice.gen(3, 3), step = 50) {
     }
     return(stan)
   }
-  state_hash <- function(s) {
-    sum(2^(0:(length(s) - 1)) * ifelse(s > 0, 1, 0))
-  }
 
   n <- ncol(graph$nei_matrix)
   s_down <- rep(-1, n)
   s_up = rep(1, n)
-  stans <- list(s_up, s_down)
+
   U_vec <- c(runif(1))
   k <- 0
   memory <- list()
   while (k < step) {
+    stans <- list(s_up, s_down)
     U_vec <- append(U_vec, runif(2^(k - 1)))
     for (i in 1:2^(k - 1)) {
       memory[[length(memory) + 1]] <- list()
@@ -47,7 +45,12 @@ ising <- function(temp = 0.01, graph = lattice.gen(3, 3), step = 50) {
     }
     k <- k + 1
     if (all(stans[[1]] == stans[[2]])) {
-      return(stans[[1]])
+      if(mem_ret == TRUE) {
+        return(list(result = stans[[1]], history= memory))
+      } else {
+        return(stans[[1]])
+      }
+
     }
   }
 }
